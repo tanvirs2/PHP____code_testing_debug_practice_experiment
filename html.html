@@ -1,0 +1,140 @@
+<style>
+    body {
+        margin: 100px 30%;
+    }
+    textarea {
+        border: none;
+        outline: none;
+        box-shadow: none;
+        background: transparent;
+    }
+    a {
+        text-decoration: none;
+    }
+    input {
+        border: none;
+        color: transparent;
+        width: 10px;
+    }
+    input::selection {
+        color: transparent;
+    }
+    input:focus {
+        outline: none;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#get").click(function () {
+            //alert('GET Click');
+            $.ajax({
+
+                url: "http://localhost/phpcrud/jsonData.php",
+                success:function (data) {
+                    data = JSON.parse(data);
+                    console.log(data);
+                }
+            });
+        });
+
+        $("#create").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/lumen_5_5/blog/public/store",
+                data: {"name":"dsds","email":"fsd"},
+
+                success:function (data) {
+                    alert('kk');
+                    console.log(data);
+                }
+            });
+        });
+
+    });
+</script>
+
+
+
+<body>
+
+<button id="create">Create</button>
+<button id="get">Get</button>
+<hr>
+<div>
+    BS for CDN
+    <br>
+
+    <a target="_blank" href="https://www.w3schools.com/bootstrap/bootstrap_get_started.asp">BS CDN</a>
+</div>
+<hr>
+<div>
+
+    <br>
+
+    <a target="_blank" href="https://code.jquery.com/jquery-3.2.1.min.js">Jquery CDN</a> |
+    <button class="copyJqueryBtn">COPY</button>
+    <input class="copyJqueryTxt" type="text" spellcheck="false"  value="https://code.jquery.com/jquery-3.2.1.min.js">
+
+</div>
+<hr>
+<div>
+
+    <br>
+    <a target="_blank" href="http://malsup.github.io/min/jquery.form.min.js">AjaxSubmit CDN</a> |
+    <button class="copyAjxSubmitBtn">COPY</button>
+    <input class="copyAjxSubmitTxt" type="text" spellcheck="false" value="http://malsup.github.io/min/jquery.form.min.js">
+
+</div>
+<hr>
+</body>
+
+
+
+<script>
+
+    /*var copyTextareaBtn = document.querySelector('.js-textareacopybtn');
+
+    copyTextareaBtn.addEventListener('click', function(event) {
+        var copyTextarea = document.querySelector('.js-copytextarea');
+        copyTextarea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+    });*/
+
+
+    function copyTextToClipboard(copyText) {
+        var copyTxtObj = document.querySelector(copyText);
+
+        copyTxtObj.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+    }
+
+
+    var copyJqueryBtn = document.querySelector('.copyJqueryBtn');
+    copyJqueryBtn.addEventListener('click', function() {
+        copyTextToClipboard(".copyJqueryTxt");
+    });
+
+    var copyAjxSubmitBtn = document.querySelector('.copyAjxSubmitBtn');
+    copyAjxSubmitBtn.addEventListener('click', function() {
+        copyTextToClipboard(".copyAjxSubmitTxt");
+    });
+
+</script>
